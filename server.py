@@ -1,5 +1,5 @@
 from flask import Flask, redirect, url_for, render_template
-from wtforms import FormField, SubmitField,
+from wtforms import FormField, SubmitField
 
 app = Flask(__name__)
 
