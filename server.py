@@ -1,6 +1,7 @@
 from flask import Flask, redirect, url_for, render_template, flash
 from wtforms import FormField, SubmitField
 from flask_sqlalchemy import SQLAlchemy 
+from forms import LoginField, RegistrationField
 
 app = Flask(__name__)
 
@@ -14,7 +15,7 @@ def home():
 
 @app.route("/login")
 def login():
-    form = LoginForm()
+    form = LoginField()
     return render_template("login.html", form=form,)
     
 
