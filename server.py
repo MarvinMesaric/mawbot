@@ -21,7 +21,7 @@ def login():
 @app.route("/registration")
 def registration():
     form = RegistrationField()
-    return render_template("register.html", form = form)
+    return render_template("register.html", title='Registrieren', form = form)
     
 
 
