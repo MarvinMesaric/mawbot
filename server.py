@@ -16,12 +16,12 @@ def home():
 @app.route("/login")
 def login():
     form = LoginField()
-    return render_template("login.html", form=form)
+    return render_template("login.html", form=form, title='Login')
 
 @app.route("/registration")
 def registration():
     form = RegistrationField()
-    return render_template("register.html", form = form)
+    return render_template("register.html", form = form, title='Registrieren')
     
 
 

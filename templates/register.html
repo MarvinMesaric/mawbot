@@ -18,8 +18,8 @@
                         {{ form.password(class="form-control form-control-lg")}}
                     </div>
                     <div class="form-group">
-                        {{ form.confirmCheck.label(class="form-control-label") }}
-                        {{ form.confirmCheck(class="form-control form-control-lg")}}
+                        {{ form.passwordCheck(class="form-control form-control-lg")}}
+                        {{ form.passwordCheck.label(class="form-control-label") }}
                     </div>
                 </fieldset>
                 <div class="form-group">
@@ -32,4 +32,4 @@
             Sie sind bereits Registriert? <a class="ml-2" href="{{ url_for('login') }}">Login</a>
         </small>
     </div>
-{% endlbock content %}
+{% endblock content %}
