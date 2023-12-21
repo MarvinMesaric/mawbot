@@ -16,15 +16,13 @@ def home():
 @app.route("/login")
 def login():
     form = LoginField()
-    return render_template("login.html", form=form)
+    return render_template("login.html", form=form, title='Login')
 
 @app.route("/registration")
 def registration():
     form = RegistrationField()
-    return render_template("register.html", title='Registrieren', form = form)
+    return render_template("register.html", form = form, title='Registrieren')
     
-
-
  
 if __name__ == "__main__":
     app.run(debug = True)
