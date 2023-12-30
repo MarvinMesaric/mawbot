@@ -1,11 +1,11 @@
-from flask import Flask, redirect, url_for, render_template, flash
-from wtforms import FormField, SubmitField
-from flask_sqlalchemy import SQLAlchemy 
-from mawbot import routes
-
+from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
-
 app.config['SECRET_KEY'] = 'test'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///site.db'
 db = SQLAlchemy(app)
+bcrypt = Bcrypt(app)
+
+from mawbot import routes #prevent circular imports
