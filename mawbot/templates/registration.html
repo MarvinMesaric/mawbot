@@ -1,10 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
     <div class="content-section">
-        <form action="POST" action="">
+        <form method="POST" action="">
             {{ form.hidden_tag() }}
                 <fieldset class="form-group">
-                    <legend class="border-bottom mb-4">Jetzt Registrieren!</legend>
+                    <legend class="border-bottom mb-4">Registrieren</legend>
                     <div class="form-group">
                         {{ form.username.label(class="form-control-label") }}
                         {{ form.username(class="form-control form-control-lg")}}
@@ -21,6 +21,7 @@
                         {{ form.passwordCheck.label(class="form-control-label") }}
                         {{ form.passwordCheck(class="form-control form-control-lg")}}
                     </div>
+
                 </fieldset>
                 <div class="form-group">
                     {{ form.submit(class="btn btn-outline-info") }}
