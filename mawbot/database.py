@@ -46,4 +46,20 @@ class Progress(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     progress = db.Column(db.Integer, unique=True, nullable=False)
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+class Session(db.Model):
+    id = db.Column(db.Integer, primary=True)
+    lastMawDate = db.Column(db.DateTime, nullable=False)
+    nextMawDate = db.Column(db.datetime, nullable=True)
+    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     
+class Location(db.Model):
+    id = db.Column(db.Integer, primary=True)
+    PosX = db.Column(db.Float, nullable=False)
+    PosY = db.Column(db.Float, nullable=False)
+    date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    
+# class Activity(db.Model):
+    # id = db.Column(db.Integer, primary=True)
+    # driving = db.Column(db.Boolean, nullable=False)
+    # date = db.Column(db.DateTime, defautl=datetime.utcnow)
