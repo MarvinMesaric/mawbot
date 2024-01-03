@@ -34,16 +34,16 @@ def login():
 
 @app.route("/registration", methods=['GET', 'POST'])
 def registration():
+    form = RegistrationForm()
     if current_user.is_authenticated:
         return redirect(url_for('home'))
-    form = RegistrationForm()
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
         user = User(username=form.username.data, email=form.email.data, password=hashed_password)
         db.session.add(user)
         db.session.commit()
         flash('Ihr Account wurde erstellt, Sie können sich jetzt einloggen')
-        return render_template(url_for('login'))
+        return redirect(url_for('login'))
     return render_template("registration.html", form = form, title='Registrieren')
     
 @app.route("/logout")
