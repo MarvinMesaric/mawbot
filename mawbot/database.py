@@ -48,13 +48,13 @@ class Progress(db.Model):
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
 class Session(db.Model):
-    id = db.Column(db.Integer, primary=True)
+    id = db.Column(db.Integer, primary_key=True)
     lastMawDate = db.Column(db.DateTime, nullable=False)
-    nextMawDate = db.Column(db.datetime, nullable=True)
+    nextMawDate = db.Column(db.DateTime, nullable=True)
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     
 class Location(db.Model):
-    id = db.Column(db.Integer, primary=True)
+    id = db.Column(db.Integer, primary_key=True)
     PosX = db.Column(db.Float, nullable=False)
     PosY = db.Column(db.Float, nullable=False)
     date = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
