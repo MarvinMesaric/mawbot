@@ -1,6 +1,6 @@
 from flask import render_template, url_for, flash, redirect, request
 from mawbot import app, db, bcrypt
-from mawbot.forms import RegistrationForm, LoginForm
+from mawbot.forms import RegistrationForm, LoginForm, UpdateCurrentUserForm
 from mawbot.database import User 
 from flask_login import current_user, login_user, logout_user, login_required
 
@@ -16,6 +16,21 @@ def controls():
 @app.route("/sensordata")
 def sensordata():
     return render_template("sensordata.html")
+
+@app.route("/account", methods=['GET', 'POST'])
+def account():
+    form = UpdateCurrentUserForm()
+    if form.validate_on_submit():
+        current_user.username = form.username.data
+        current_user.email = form.email.data
+        db.session.commit()
+        flash('Ihr Account wurde Aktualisiert.', 'success')
+        return redirect(url_for('account'))
+    elif request.method == 'GET':
+        form.username.data = current_user.username 
+        form.email.data = current_user.email
+    image_file = url_for('static', filename='profilePictures/' + current_user.profilePicture)
+    return render_template("account.html", form=form, title="Account", image_file=image_file)
 
 @app.route("/login", methods=['GET', 'POST'])
 def login():
