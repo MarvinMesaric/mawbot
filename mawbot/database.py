@@ -11,7 +11,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(20), unique=True, nullable=False)
     email = db.Column(db.String(50), unique=True, nullable=False)
     password = db.Column(db.String(50), nullable=False)
-    profilePicture = db.Column(db.String(20), nullable=False, default='mawbot.png')
+    profilePicture = db.Column(db.String(20), nullable=False, default='default.jpg')
     dateOfCreation = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
     def __repr__(self):
