@@ -47,3 +47,19 @@ class UpdateCurrentUserForm(FlaskForm):
             email = User.query.filter_by(email=email.data).first()
             if email:
                 raise ValidationError('Diese E-Mail wird bereits genutzt.')
+            
+
+class RequestResetForm(FlaskForm):
+    mail = StringField('Email', validators=[DataRequired(), Email()])
+    submit =  SubmitField('Abschicken')
+
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user is None:
+            raise ValidationError('Es existiert kein Account mit dieser E-Mail. Bitte Registrieren sie sich erst.')
+        
+
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField('Password', validators=[DataRequired()])
+    passwordCheck = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    submit =  SubmitField('Passwort ändern')

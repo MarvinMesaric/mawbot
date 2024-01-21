@@ -3,9 +3,11 @@ import os
 from PIL import Image
 from flask import render_template, url_for, flash, redirect, request
 from mawbot import app, db, bcrypt
-from mawbot.forms import RegistrationForm, LoginForm, UpdateCurrentUserForm
+from mawbot.forms import RegistrationForm, LoginForm, UpdateCurrentUserForm, ResetPasswordForm, RequestResetForm
 from mawbot.database import User 
 from flask_login import current_user, login_user, logout_user, login_required
+
+#pip install flask-mail
 
 @app.route("/")
 @app.route("/home")
@@ -85,3 +87,31 @@ def registration():
 def logout():
     logout_user()
     return redirect(url_for('home'))
+
+def SendResetEmail(user):
+    
+
+@app.route("/reset_password", methods=['GET', 'POST'])
+def reset_password():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    form = RequestResetForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        SendResetEmail(user)
+        flash('Sie haben eine E-Mail zum zurücksetzen Ihres Passwortes erhalten', 'info')
+        return redirect(url_for('login'))
+    return render_template('resetRequest.html', title='Passwort Zurücksetzen', form=form)
+
+@app.route("/reset_password/<token>", methods=['GET', 'POST'])
+def reset_token(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    user = User.VerifyResetToken(token) 
+    if user is None:
+        flash('Dieser Token ist nicht mehr gültig.', 'warning')
+        return redirect(url_for('resetRequest'))
+    form = ResetPasswordForm()
+    
+    return render_template('resetToken.html', title='Passwort Zurücksetzen', form=form)
+
