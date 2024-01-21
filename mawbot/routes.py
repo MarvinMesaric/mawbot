@@ -24,22 +24,22 @@ def SavePicture(formPicture):
     randomHex = secrets.token_hex(8)
     _, fExt = os.path.splitext(formPicture.filename)
     pictureFn = randomHex + fExt
-    picturePath = os.path.join(app.route.path, 'static/profilePictures', pictureFn)
+    picturePath = os.path.join(app.root_path, 'static/profilePictures', pictureFn)
     
     outputSize = (125, 125)
     i = Image.open(formPicture)
     i.thumbnail(outputSize)
     i.save(picturePath)
-    formPicture.save(picturePath)
     return pictureFn
 
 @app.route("/account", methods=['GET', 'POST'])
+@login_required
 def account():
     form = UpdateCurrentUserForm()
     if form.validate_on_submit():
         if form.picture.data:
             pictureFile = SavePicture(form.picture.data)
-            current_user.profilePicture
+            current_user.profilePicture = pictureFile
         current_user.username = form.username.data
         current_user.email = form.email.data
         db.session.commit()
@@ -48,8 +48,8 @@ def account():
     elif request.method == 'GET':
         form.username.data = current_user.username 
         form.email.data = current_user.email
-    image_file = url_for('static', filename='profilePictures/' + current_user.profilePicture)
-    return render_template("account.html", form=form, title="Account", image_file=image_file)
+    profilePicture = url_for('static', filename='profilePictures/' + current_user.profilePicture)
+    return render_template("account.html", form=form, title="Account", profilePicture=profilePicture)
 
 
 @app.route("/login", methods=['GET', 'POST'])
@@ -64,7 +64,7 @@ def login():
             next_page = request.args.get('next')
             return redirect(next_page) if next_page else redirect(url_for('home'))
         else:
-            flash('Ihr Nutzername / Passwort stimmen nicht überein. Bitte versuchen sie es erneut.')
+            flash('Ihr Nutzername / Passwort stimmen nicht überein. Bitte versuchen sie es erneut.', 'danger')
     return render_template("login.html", form=form, title='Login')
 
 @app.route("/registration", methods=['GET', 'POST'])
