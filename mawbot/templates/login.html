@@ -20,7 +20,11 @@
                 </fieldset>
                 <div class="form-group">
                     {{ form.submit(class="btn btn-outline-info") }}
+                    <small class="text-muted pl-2">
+                        <a href="{{ url_for('reset_password') }}">Passwort Zurücksetzen</a>
+                    </small>
                 </div>
+                
         </form>
     </div>
     <div class="border-top pt-3">

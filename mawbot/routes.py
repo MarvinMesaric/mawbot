@@ -2,10 +2,11 @@ import secrets
 import os
 from PIL import Image
 from flask import render_template, url_for, flash, redirect, request
-from mawbot import app, db, bcrypt
+from mawbot import app, db, bcrypt, mail
 from mawbot.forms import RegistrationForm, LoginForm, UpdateCurrentUserForm, ResetPasswordForm, RequestResetForm
 from mawbot.database import User 
 from flask_login import current_user, login_user, logout_user, login_required
+from flask_mail import Message
 
 #pip install flask-mail
 
@@ -88,8 +89,15 @@ def logout():
     logout_user()
     return redirect(url_for('home'))
 
-def SendResetEmail(user):
-    
+def send_reset_email(user):
+    token = user.get_reset_token()
+    msg = Message('Passwort Zurücksetzen', sender='mawbotnoreply@gmail.com', recipients=[user.email])
+    msg.body = f'''Hallo {user.username},
+Um ihr passwort zurück zu setzen, folgen sie dem folgenden Link:
+{ url_for('reset_token', token=token, _external=True) }
+Wenn diese Anfrage nicht von Ihnen kommt dann ignorieren Sie diese E-Mail und keine änderungen werden vor genommen.
+'''
+    mail.send(msg)
 
 @app.route("/reset_password", methods=['GET', 'POST'])
 def reset_password():
@@ -98,7 +106,7 @@ def reset_password():
     form = RequestResetForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
-        SendResetEmail(user)
+        send_reset_email(user)
         flash('Sie haben eine E-Mail zum zurücksetzen Ihres Passwortes erhalten', 'info')
         return redirect(url_for('login'))
     return render_template('resetRequest.html', title='Passwort Zurücksetzen', form=form)
@@ -107,11 +115,16 @@ def reset_password():
 def reset_token(token):
     if current_user.is_authenticated:
         return redirect(url_for('home'))
-    user = User.VerifyResetToken(token) 
+    user = User.verify_reset_token(token)
     if user is None:
         flash('Dieser Token ist nicht mehr gültig.', 'warning')
         return redirect(url_for('resetRequest'))
     form = ResetPasswordForm()
-    
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user.password = hashed_password
+        db.session.commit()
+        flash('Ihr Passwort wurde geändert! Sie können sich nun einloggen.')
+        return redirect(url_for('login'))
     return render_template('resetToken.html', title='Passwort Zurücksetzen', form=form)
 
