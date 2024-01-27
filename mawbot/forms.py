@@ -50,7 +50,7 @@ class UpdateCurrentUserForm(FlaskForm):
             
 
 class RequestResetForm(FlaskForm):
-    mail = StringField('Email', validators=[DataRequired(), Email()])
+    email = StringField('Email', validators=[DataRequired(), Email()])
     submit =  SubmitField('Abschicken')
 
     def validate_email(self, email):

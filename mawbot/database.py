@@ -16,12 +16,12 @@ class User(db.Model, UserMixin):
     profilePicture = db.Column(db.String(20), nullable=False, default='default.jpg')
     dateOfCreation = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
 
-    def GetResetToken(self, expiresSec=1800):
+    def get_reset_token(self, expiresSec=1800):
         s = Serializer(app.config['SECRET_KEY'], expiresSec)
         return s.dumps({'user_id': self.id}).decode('utf-8')
     
     @staticmethod
-    def VerifyResetToken(token):
+    def verify_reset_token(token):
         s = Serializer(app.config['SECRET_KEY'])
         try:
             user_id = s.loads(token)['user_id']

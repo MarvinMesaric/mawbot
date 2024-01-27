@@ -2,3 +2,5 @@ mwabot/instance/site.db
 mawbot/__pycache__/__init__.cpython-311.pyc
 mawbot/__pycache__/forms.cpython-311.pyc
 mawbot/__pycache__/routes.cpython-311.pyc
+mawbot/static/profilePictures
+instance/site.db
