@@ -11,27 +11,27 @@
         <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ url_for('home') }}">Home</a>
+                    <a class="nav-link" aria-current="page" href="{{ url_for('main.home') }}">Home</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ url_for('controls') }}">Steuerung</a>
+                    <a class="nav-link" aria-current="page" href="{{ url_for('sensordata.controls') }}">Steuerung</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ url_for('sensordata') }}">Sensordaten</a>
+                    <a class="nav-link" aria-current="page" href="{{ url_for('sensordata.sensordatas') }}">Sensordaten</a>
                 </li>
                 {% if current_user.is_authenticated %}
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ url_for('account') }}">Account</a>
+                    <a class="nav-link" aria-current="page" href="{{ url_for('users.account') }}">Account</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ url_for('logout') }}">Logout</a>
+                    <a class="nav-link" aria-current="page" href="{{ url_for('users.logout') }}">Logout</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ url_for('login') }}">Login</a>
+                    <a class="nav-link" aria-current="page" href="{{ url_for('users.login') }}">Login</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ url_for('registration') }}">Registrieren</a>
+                    <a class="nav-link" aria-current="page" href="{{ url_for('users.registration') }}">Registrieren</a>
                 </li>
                 {% endif %}
                 
