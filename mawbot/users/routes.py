@@ -22,14 +22,14 @@ def login():
             flash('Ihr Nutzername / Passwort stimmen nicht überein. Bitte versuchen sie es erneut.', 'danger')
     return render_template("login.html", form=form, title='Login')
 
-@users.route("/registration", methods=['GET', 'POST'])
+@users.route("/registration", methods=['GET', 'POST']) 
 def registration():
     form = RegistrationForm()
     if current_user.is_authenticated:
         return redirect(url_for('main.home'))
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data, email=form.email.data, password=hashed_password)
+        user = User(username=form.username.data, email=form.email.data, password=hashed_password, uuid = form.email.uuid)
         db.session.add(user)
         db.session.commit()
         flash('Ihr Account wurde erstellt, Sie können sich jetzt einloggen')

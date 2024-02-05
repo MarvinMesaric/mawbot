@@ -9,3 +9,7 @@ def controls():
 @sensordata.route("/sensordatas")
 def sensordatas():
     return render_template("sensordatas.html")
+
+@sensordata.route("/recievedata")
+def recievedata():
+    

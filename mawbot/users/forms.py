@@ -10,6 +10,7 @@ class RegistrationForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])
     password = PasswordField('Password', validators=[DataRequired()])
     passwordCheck = PasswordField('Confirm Password', validators=[DataRequired(), EqualTo('password')])
+    uuid = StringField('UU-ID', validators=[DataRequired()])
     submit =  SubmitField('Sign Up')
 
     def validate_username(self, username):
@@ -18,10 +19,15 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Dieser Nutzername wird bereits genutzt.')
         
     def validate_email(self, email):
-        user = User.query.filter_by(email=email.data).first()
-        if user:
+        email = User.query.filter_by(email=email.data).first()
+        if email:
             raise ValidationError('Diese E-Mail wird bereits genutzt.')
     
+    def validate_uuid(self, uuid):
+        if uuid.data != current_user.uuid:
+            uuid = User.query.filter_by(uuid=uuid.data).first()
+            if uuid:
+                raise ValidationError('Diese UU-ID ist bereits vergeben.')     
     
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])   
@@ -46,6 +52,8 @@ class UpdateCurrentUserForm(FlaskForm):
             email = User.query.filter_by(email=email.data).first()
             if email:
                 raise ValidationError('Diese E-Mail wird bereits genutzt.')
+            
+       
             
 
 class RequestResetForm(FlaskForm):
