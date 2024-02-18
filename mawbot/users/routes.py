@@ -29,10 +29,10 @@ def registration():
         return redirect(url_for('main.home'))
     if form.validate_on_submit():
         hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
-        user = User(username=form.username.data, email=form.email.data, password=hashed_password, uuid = form.email.uuid)
+        user = User(username=form.username.data, email=form.email.data, password=hashed_password, uuid = form.uuid.data)
         db.session.add(user)
         db.session.commit()
-        flash('Ihr Account wurde erstellt, Sie können sich jetzt einloggen')
+        flash('Ihr Account wurde erstellt, Sie können sich jetzt einloggen', 'success')
         return redirect(url_for('users.login'))
     return render_template("registration.html", form = form, title='Registrieren')
 

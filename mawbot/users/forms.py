@@ -24,10 +24,9 @@ class RegistrationForm(FlaskForm):
             raise ValidationError('Diese E-Mail wird bereits genutzt.')
     
     def validate_uuid(self, uuid):
-        if uuid.data != current_user.uuid:
-            uuid = User.query.filter_by(uuid=uuid.data).first()
-            if uuid:
-                raise ValidationError('Diese UU-ID ist bereits vergeben.')     
+        uuid = User.query.filter_by(uuid=uuid.data).first()
+        if uuid:
+            raise ValidationError('Diese UU-ID ist bereits vergeben.')     
     
 class LoginForm(FlaskForm):
     email = StringField('Email', validators=[DataRequired(), Email()])   
