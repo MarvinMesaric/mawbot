@@ -1,0 +1,43 @@
+:root {
+    --background_color_main: #111111;
+    --background_color_nav: #303030;
+}
+
+html body {
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--background_color_main);
+}
+
+
+nav {
+    position: fixed;
+    background-color: var(--background_color_nav);
+    width: 100vw;
+    height: auto;
+}
+
+nav ul li {
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    display: inline;
+    padding: 1vw;
+}
+
+.liFloatLeft {
+    float: left;
+}
+.liFloatRight {
+    float: right;
+}
+
+.navListItem {
+    color: purple;
+    text-decoration: none;
+    border-bottom: 2px #4e4e4e;
+}
+
+main { 
+    padding: 10vh;
+}
