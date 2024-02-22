@@ -71,9 +71,14 @@ main {
     width: auto;
     max-height: 150px;
     max-width: 150px;
-    float: right;
-    justify-content: end;
-    align-items: flex-end;
+}
+
+.temperatureIcon {
+    height: auto;
+    width: auto;
+    max-height: 100px;
+    max-width: 100px;
+
 }
 
 .gridContainer {
@@ -88,4 +93,6 @@ main {
     height: 30vh;
     border: 3px solid #ffffff;
     border-radius: 5px;
+    justify-content: center;
+    align-items: center;
 }

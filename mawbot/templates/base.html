@@ -16,6 +16,7 @@
                         <a class="navListItem" aria-current="page" href="{{ url_for('main.home') }}">Home</a>
                     </div>
                 </li>
+                {% if current_user.is_authenticated %}
                 <li class="liFloatLeft">
                     <div class="navContainer">
                         <a class="navListItem" aria-current="page" href="{{ url_for('sensordata.controls') }}">Steuerung</a>
@@ -27,7 +28,6 @@
                         <a class="navListItem" aria-current="page" href="{{ url_for('sensordata.sensordatas') }}">Sensordaten</a>
                     </div>
                 </li>
-                {% if current_user.is_authenticated %}
                 <li class="liFloatRight">
                     <div class="navContainer">
                         <a class="navListItem" aria-current="page" href="{{ url_for('users.account') }}">Account</a>
@@ -45,7 +45,7 @@
                     </div>
                 </li>
                 <li class="liFloatRight">
-                    <div class="navContainer"></div>
+                    <div class="navContainer">
                         <a class="navListItem " aria-current="page" href="{{ url_for('users.registration') }}">Registrieren</a>
                     </div>
                 </li> 
