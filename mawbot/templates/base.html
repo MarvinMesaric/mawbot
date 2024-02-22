@@ -12,27 +12,42 @@
         <nav class="">
             <ul class="">
                 <li class="liFloatLeft">
-                    <a class="navListItem" aria-current="page" href="{{ url_for('main.home') }}">Home</a>
+                    <div class="navContainer">
+                        <a class="navListItem" aria-current="page" href="{{ url_for('main.home') }}">Home</a>
+                    </div>
                 </li>
                 <li class="liFloatLeft">
-                    <a class="navListItem" aria-current="page" href="{{ url_for('sensordata.controls') }}">Steuerung</a>
+                    <div class="navContainer">
+                        <a class="navListItem" aria-current="page" href="{{ url_for('sensordata.controls') }}">Steuerung</a>
+                    </div>
+                    
                 </li>
                 <li class="liFloatLeft">
-                    <a class="navListItem" aria-current="page" href="{{ url_for('sensordata.sensordatas') }}">Sensordaten</a>
+                    <div class="navContainer">
+                        <a class="navListItem" aria-current="page" href="{{ url_for('sensordata.sensordatas') }}">Sensordaten</a>
+                    </div>
                 </li>
                 {% if current_user.is_authenticated %}
                 <li class="liFloatRight">
-                    <a class="navListItem" aria-current="page" href="{{ url_for('users.account') }}">Account</a>
+                    <div class="navContainer">
+                        <a class="navListItem" aria-current="page" href="{{ url_for('users.account') }}">Account</a>
+                    </div>
                 </li>
                 <li class="liFloatRight">
-                    <a class="navListItem" aria-current="page" href="{{ url_for('users.logout') }}">Logout</a>
-                </li>
+                    <div class="navContainer">
+                        <a class="navListItem" aria-current="page" href="{{ url_for('users.logout') }}">Logout</a>
+                    </div>
+                </li>   
                 {% else %}
                 <li class="liFloatRight">
-                    <a class="navListItem" aria-current="page" href="{{ url_for('users.login') }}">Login</a>
+                    <div class="navContainer">
+                        <a class="navListItem" aria-current="page" href="{{ url_for('users.login') }}">Login</a>
+                    </div>
                 </li>
                 <li class="liFloatRight">
-                    <a class="navListItem " aria-current="page" href="{{ url_for('users.registration') }}">Registrieren</a>
+                    <div class="navContainer"></div>
+                        <a class="navListItem " aria-current="page" href="{{ url_for('users.registration') }}">Registrieren</a>
+                    </div>
                 </li> 
                 {% endif %} 
             </ul>
@@ -54,6 +69,6 @@
         </main>
     </body>
     <footer>
-        
+
     </footer>
 </html>

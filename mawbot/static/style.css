@@ -3,12 +3,12 @@
     --background_color_nav: #303030;
 }
 
+
 html body {
     height: 100vh;
     width: 100vw;
     background-color: var(--background_color_main);
 }
-
 
 nav {
     position: fixed;
@@ -33,11 +33,59 @@ nav ul li {
 }
 
 .navListItem {
-    color: purple;
+    color: gray;
     text-decoration: none;
-    border-bottom: 2px #4e4e4e;
+    
+}
+
+.navContainer {
+    padding: 0rem 1rem 0rem 1rem;
+    border-bottom: 1px solid gray;
+    
+}
+
+.navContainer:hover {
+    background-color: white;
+    transition: 0.5s ease-in-out;
+    border-radius: 5px;
+    border: none;
+}
+
+.navContainer:hover .navListItem {
+    color: black;
+    transition: 0.5s ease-in-out;
 }
 
 main { 
     padding: 10vh;
+}
+
+.sensordataHeader{
+    display: flex;
+    border-bottom: 2px white solid;
+    width: 100%;
+}
+
+.batteryStatusIcon {
+    height: auto;
+    width: auto;
+    max-height: 150px;
+    max-width: 150px;
+    float: right;
+    justify-content: end;
+    align-items: flex-end;
+}
+
+.gridContainer {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    grid-template-rows: repeat(2, auto);
+    gap: 5vh 3vw;
+}
+
+.gridItem {
+    width: 30vh;
+    height: 30vh;
+    border: 3px solid #ffffff;
+    border-radius: 5px;
 }
