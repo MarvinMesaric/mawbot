@@ -3,16 +3,34 @@
 
     <div class="sensordataHeader">
         <h3>Sensordaten</h3>
-        <img src="../static/batteryStatusIcons/batteryStatus-{{ batteryStatus }}.png" class="batteryStatusIcon">
+        <img src="../static/Icons/batteryStatus/batteryStatus-{{ batteryValue }}.png" class="batteryStatusIcon">
     </div>
     <div class="gridContainer">
         <div class="gridItem">
-            <img src="" alt="">
+            {% if temperatureValue > 10.0 %}
+            <img src="../static/Icons/temperature/temperatureHigh.png" class="temperatureIcon">
+            {% else %}
+            <img src="../static/Icons/temperature/temperatureLow.png" class="temperatureIcon">
+            {% endif %}
+            <h1>Temperature</h1>
+            <p>{{ temperatureValue }}°C</p>
         </div>
-        <div class="gridItem">2</div>
-        <div class="gridItem">3</div>
-        <div class="gridItem">4</div>
-        <div class="gridItem">5</div>
+        <div class="gridItem">
+            <h1>Humidity</h1>
+            <p>{{ humidityValue }}</p>
+        </div>
+        <div class="gridItem">
+            <h1>Soil Moisture</h1>
+            <p>{{ soilMoistureValue }}</p>
+        </div>
+        <div class="gridItem">
+            <h1>Rain</h1>
+            <p>{{ rainValue }}</p>
+        </div>
+        <div class="gridItem">`
+            <h1>Progress</h1>
+            <p>{{ progressValue }}</p>
+        </div>
     </div>
 
 {% endblock content %}
