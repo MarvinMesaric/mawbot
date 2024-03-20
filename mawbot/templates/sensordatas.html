@@ -2,34 +2,52 @@
 {% block content %}
 
     <div class="sensordataHeader">
-        <h3>Sensordaten</h3>
-        <img src="../static/Icons/batteryStatus/batteryStatus-{{ batteryValue }}.png" class="batteryStatusIcon">
+        <div class="headerItem">
+            <h3>Sensordaten</h3>    
+        </div>
+        <div>
+            <img src="../static/Icons/batteryStatus/batteryStatus-{{ batteryValue }}.png" class="batteryStatusIcon">
+        </div>
     </div>
     <div class="gridContainer">
         <div class="gridItem">
-            {% if temperatureValue > 10.0 %}
-            <img src="../static/Icons/temperature/temperatureHigh.png" class="temperatureIcon">
-            {% else %}
-            <img src="../static/Icons/temperature/temperatureLow.png" class="temperatureIcon">
-            {% endif %}
-            <h1>Temperature</h1>
-            <p>{{ temperatureValue }}°C</p>
+            <div class="dataBoxItem">
+                {% if temperatureValue > 10.0 %}
+                <img src="../static/Icons/temperature/temperatureHigh.png" class="temperatureIcon">
+                {% else %}
+                <img src="../static/Icons/temperature/temperatureLow.png" class="temperatureIcon">
+                {% endif %}
+            </div>
+            <div class="dataBoxItem">
+                <h1>Temperature</h1>
+            </div>
+            <div class="dataBoxItem">
+                <p>{{ temperatureValue }}°C</p>
+            </div>  
         </div>
         <div class="gridItem">
-            <h1>Humidity</h1>
-            <p>{{ humidityValue }}</p>
+            <div class="dataBoxItem">
+                <h1 class="dataBoxItem">Humidity</h1>
+            </div>
+            <div class="dataBoxItem">
+                <p class="dataBoxItem">{{ humidityValue }}</p>
+            </div>
         </div>
         <div class="gridItem">
-            <h1>Soil Moisture</h1>
-            <p>{{ soilMoistureValue }}</p>
+            <div class="dataBoxItem">
+                <h1>Soil Moisture</h1>
+            </div>
+            <div class="dataBoxItem">
+                <p>{{ soilMoistureValue }}</p>
+            </div>
         </div>
         <div class="gridItem">
-            <h1>Rain</h1>
+            <div class="dataBoxItem">
+                <h1>Rain</h1>
+            </div>
+            <div class="dataBoxItem">
             <p>{{ rainValue }}</p>
-        </div>
-        <div class="gridItem">`
-            <h1>Progress</h1>
-            <p>{{ progressValue }}</p>
+            </div>
         </div>
     </div>
 

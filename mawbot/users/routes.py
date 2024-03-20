@@ -71,6 +71,7 @@ def reset_password():
         send_reset_email(user)
         flash('Sie haben eine E-Mail zum zurücksetzen Ihres Passwortes erhalten', 'info')
         return redirect(url_for('users.login'))
+    
     return render_template('resetRequest.html', title='Passwort Zurücksetzen', form=form)
 
 @users.route("/reset_password/<token>", methods=['GET', 'POST'])

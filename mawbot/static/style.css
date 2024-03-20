@@ -1,6 +1,10 @@
 :root {
-    --background_color_main: #111111;
+    --background_color_main: #b3b3b3;
     --background_color_nav: #303030;
+}
+
+* {
+    box-sizing: border-box;
 }
 
 
@@ -11,10 +15,11 @@ html body {
 }
 
 nav {
-    position: fixed;
+    top: 0;
     background-color: var(--background_color_nav);
     width: 100vw;
-    height: auto;
+    height: 7vh;
+    display: grid;
 }
 
 nav ul li {
@@ -35,13 +40,11 @@ nav ul li {
 .navListItem {
     color: gray;
     text-decoration: none;
-    
 }
 
 .navContainer {
     padding: 0rem 1rem 0rem 1rem;
     border-bottom: 1px solid gray;
-    
 }
 
 .navContainer:hover {
@@ -57,13 +60,21 @@ nav ul li {
 }
 
 main { 
-    padding: 10vh;
+    padding: 8vh 4vw 4vh 4vw;
 }
 
 .sensordataHeader{
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 20vh;
     border-bottom: 2px white solid;
     width: 100%;
+}
+
+.headerItem {
+    padding: 2vh 2vw;
+    display: flex;
+    justify-content: start;
+    align-items: start;
 }
 
 .batteryStatusIcon {
@@ -78,21 +89,98 @@ main {
     width: auto;
     max-height: 100px;
     max-width: 100px;
-
 }
 
 .gridContainer {
     display: grid;
-    grid-template-columns: repeat(4, auto);
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(2, auto);
     grid-template-rows: repeat(2, auto);
-    gap: 5vh 3vw;
+    gap: 6vh 6vw;
+    padding: 2vh 1vw;
 }
 
 .gridItem {
-    width: 30vh;
-    height: 30vh;
-    border: 3px solid #ffffff;
-    border-radius: 5px;
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    width: 40vh;
+    height: 40vh;
+    border: 10px solid #ffffff;
+    border-radius: 25px;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
+    font-size: 3rem;
+}
+
+.dataBoxItem {
+    display: flex;
+    padding: 1vh;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Extra small devices - phones */
+@media only screen and (max-width: 600px) {
+    [class*="col-xs-"] {
+        width: 100%;
+    }
+
+}
+
+/* Small devices - portrait tablets and large phones */
+@media only screen and (min-width: 600px) {
+    [class*="col-s-"] {
+        width: 100%;
+    }
+
+}
+
+/* Medium devices - landscape tablet  */
+@media only screen and (min-width: 768px) {
+    .col-1 {width: 8.33%;}
+    .col-2 {width: 16.66%;}
+    .col-3 {width: 25%;}
+    .col-4 {width: 33.33%;}
+    .col-5 {width: 41.66%;}
+    .col-6 {width: 50%;}
+    .col-7 {width: 58.33%;}
+    .col-8 {width: 66.66%;}
+    .col-9 {width: 75%;}
+    .col-10 {width: 83.33%;}
+    .col-11 {width: 91.66%;}
+    .col-12 {width: 100%;}
+}
+
+/* Large devices - laptops/desktops */
+@media only screen and (min-width: 992px) {
+    .col-l-2 {width: 16.66%;}
+    .col-l-1 {width: 8.33%;}
+    .col-l-3 {width: 25%;}
+    .col-l-4 {width: 33.33%;}
+    .col-l-5 {width: 41.66%;}
+    .col-l-6 {width: 50%;}
+    .col-l-7 {width: 58.33%;}
+    .col-l-8 {width: 66.66%;}
+    .col-l-9 {width: 75%;}
+    .col-l-10 {width: 83.33%;}
+    .col-l-11 {width: 91.66%;}
+    .col-l-12 {width: 100%;}
+}
+
+/* Extra large devices - large laptops and desktops */
+@media only screen and (min-width: 1200px) {
+    .col-xl-2 {width: 16.66%;}
+    .col-xl-1 {width: 8.33%;}
+    .col-xl-3 {width: 25%;}
+    .col-xl-4 {width: 33.33%;}
+    .col-xl-5 {width: 41.66%;}
+    .col-xl-6 {width: 50%;}
+    .col-xl-7 {width: 58.33%;}
+    .col-xl-8 {width: 66.66%;}
+    .col-xl-9 {width: 75%;}
+    .col-xl-10 {width: 83.33%;}
+    .col-xl-11 {width: 91.66%;}
+    .col-xl-12 {width: 100%;}
 }
